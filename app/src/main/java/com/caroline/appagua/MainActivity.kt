@@ -17,8 +17,6 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding:ActivityMainBinding
-
     private lateinit var edit_peso:EditText
     private lateinit var edit_idade:EditText
     private lateinit var bt_calcular: Button
