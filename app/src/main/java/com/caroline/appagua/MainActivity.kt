@@ -5,15 +5,19 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.AlarmClock
+import android.renderscript.ScriptGroup
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import com.caroline.appagua.databinding.ActivityMainBinding
 import com.caroline.appagua.model.CalcularIngestaoDiaria
 import java.lang.NumberFormatException
 import java.text.NumberFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding:ActivityMainBinding
 
     private lateinit var edit_peso:EditText
     private lateinit var edit_idade:EditText
