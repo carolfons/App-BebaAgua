@@ -12,4 +12,5 @@
     <string name="toast_informe_idade">Informe sua Idade!</string>
     <string name="dialog_titulo">"Redefinir Dados"</string>
     <string name="dialog_descricao">"Deseja excluir todos os dados existentes?"</string>
+    <string name="alarm_message">"Hora de Beber água!</string>
 </resources>

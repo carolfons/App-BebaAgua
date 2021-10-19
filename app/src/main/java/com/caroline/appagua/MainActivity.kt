@@ -1,8 +1,10 @@
 package com.caroline.appagua
 
 import android.app.TimePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.AlarmClock
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -84,6 +86,20 @@ class MainActivity : AppCompatActivity() {
                 txt_minuto.text = String.format("%02d",minutes)
             }, horaAtual,minutoAtual,true)
             timePickerDialog.show()
+        }
+
+        bt_alarme.setOnClickListener{
+            if(!txt_hora.text.toString().isEmpty() && !txt_minuto.text.toString().isEmpty()){
+                val intent = Intent(AlarmClock.ACTION_SET_ALARM)
+                intent.putExtra(AlarmClock.EXTRA_HOUR, txt_hora.text.toString().toInt())
+                intent.putExtra(AlarmClock.EXTRA_MINUTES,txt_minuto.text.toString().toInt())
+                intent.putExtra(AlarmClock.EXTRA_MESSAGE, getString(R.string.alarm_message))
+                startActivity(intent)
+
+                if(intent.resolveActivity(packageManager)!=null){
+                    startActivity(intent)
+                }
+            }
         }
     }
 
