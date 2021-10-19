@@ -1,5 +1,6 @@
 package com.caroline.appagua
 
+import android.app.TimePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -18,8 +19,19 @@ class MainActivity : AppCompatActivity() {
     private lateinit var txt_resultado:TextView
     private lateinit var ic_redefinir_dados:ImageView
 
+    private lateinit var bt_lembrete:Button
+    private lateinit var bt_alarme:Button
+    private lateinit var txt_hora:TextView
+    private lateinit var txt_minuto:TextView
+
     private lateinit var calcularIngestaoDiaria: CalcularIngestaoDiaria
     private var resultadoMl = 0.0
+
+    //Remember and Alarm variables
+    lateinit var timePickerDialog: TimePickerDialog
+    lateinit var calendario: Calendar
+    var horaAtual = 0
+    var minutoAtual = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +74,17 @@ class MainActivity : AppCompatActivity() {
             dialog.show()
 
         }
+
+        bt_lembrete.setOnClickListener{
+            calendario = Calendar.getInstance()
+            horaAtual = calendario.get(Calendar.HOUR_OF_DAY) //TAKING THE HOUR OF THE DAY
+            minutoAtual = calendario.get(Calendar.MINUTE)//TAKING THE MINUTE
+            timePickerDialog = TimePickerDialog(this,{timePicker:TimePicker,hourOfDay:Int,minutes:Int ->
+                txt_hora.text = String.format("%02d", hourOfDay)
+                txt_minuto.text = String.format("%02d",minutes)
+            }, horaAtual,minutoAtual,true)
+            timePickerDialog.show()
+        }
     }
 
     private fun IniciarComponentes(){
@@ -70,6 +93,11 @@ class MainActivity : AppCompatActivity() {
         bt_calcular = findViewById(R.id.bt_calcular);
         txt_resultado = findViewById(R.id.tv_resultado);
         ic_redefinir_dados = findViewById(R.id.ic_redefinir);
+
+        bt_lembrete = findViewById(R.id.bt_lembrete)
+        bt_alarme = findViewById(R.id.bt_alarme)
+        txt_hora = findViewById(R.id.txt_hora)
+        txt_minuto = findViewById(R.id.txt_min)
 
     }
 }
